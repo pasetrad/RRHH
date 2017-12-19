@@ -5,10 +5,25 @@
  */
 package Controlador;
 
+import Negocio.ModeloAgregar;
+import Negocio.ModeloListar;
+import Negocio.Personal;
+import java.util.ArrayList;
+
 /**
  *
  * @author simon
  */
 public class Control {
+    private ModeloAgregar agrega;
+    private ModeloListar lista;
     
+    public int agregar(int rut, String dv, String fechaIngreso,String direccion, String fechaCumple,String nombre,String apellido){
+        agrega = new ModeloAgregar();
+        return agrega.Ingresar(rut, dv, fechaIngreso, direccion, fechaCumple, nombre, apellido);
+    }
+    public ArrayList<Personal> listar(){
+        lista = new ModeloListar();
+        return lista.Listar();
+    }
 }

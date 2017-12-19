@@ -10,8 +10,8 @@ package Negocio;
  * @author simon
  */
 public class Personal {
-    int id, rut;
-    String dv, fechaIngreso,direccion,fechaCumple,nombre,apellido;
+    private int id, rut;
+    private String dv, fechaIngreso,direccion,fechaCumple,nombre,apellido;
 
     public int getId() {
         return id;
