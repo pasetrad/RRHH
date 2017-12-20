@@ -9,7 +9,11 @@ import Controlador.Control;
 import Negocio.Personal;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -88,15 +92,16 @@ public class Listar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
@@ -104,7 +109,7 @@ public class Listar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jButton2)
@@ -117,15 +122,20 @@ public class Listar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         while(table1.getRowCount()>0) table1.removeRow(0);
         lista = consulta.listar(); 
-        Object[] fila = new Object[6];
+        Object[] fila = new Object[7];
         for (int x=0;x<lista.size();x++){
             fila[0]=lista.get(x).getId();
             fila[1]=String.format("%,d",lista.get(x).getRut())+"-"+lista.get(x).getDv();
             fila[2]=lista.get(x).getNombre();
             fila[3]=lista.get(x).getApellido();
-            fila[4]=lista.get(x).getFechaIngreso();
+            Timestamp fecha= Timestamp.valueOf(lista.get(x).getFechaIngreso());
+            fila[4]=new SimpleDateFormat("dd/MM/yyyy").format(fecha);
             fila[5]=lista.get(x).getDireccion();
-            fila[5]=lista.get(x).getFechaCumple();
+            //SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            fecha= Timestamp.valueOf(lista.get(x).getFechaCumple());
+            fila[6]=new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+                    
+                    //lista.get(x).getFechaCumple();
             table1.addRow(fila);
         }jTable1.updateUI();
         JOptionPane.showMessageDialog(this, "Lista actualizada");

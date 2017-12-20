@@ -326,8 +326,9 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        int rut,numero,valor;
+        int rut,valor;
         String dv,nombre,apellido,direccion,fechaIng, fechaNac;
+        if (!varNombre.getText().isEmpty() && !varApellido.getText().isEmpty() && !varCalle.getText().isEmpty() && !varDv.getText().isEmpty() && !varComuna.getText().isEmpty() && !varNumero.getText().isEmpty() && !varRut.getText().isEmpty() && boxDia.getSelectedItem()!="Seleccionar" && boxDia1.getSelectedItem()!="Seleccionar" && boxMes.getSelectedItem()!="Seleccionar" && boxMes1.getSelectedItem()!="Seleccionar" && boxAño.getSelectedItem()!="Seleccionar" && boxAño1.getSelectedItem()!="Seleccionar"){
         consulta = new Control();
         nombre= varNombre.getText();
         apellido =varApellido.getText();
@@ -346,6 +347,8 @@ public class Agregar extends javax.swing.JFrame {
         }
         else {
             JOptionPane.showMessageDialog(this, "Rut no valido");
+        }} else {
+            JOptionPane.showMessageDialog(this, "Ingrese todo los datos");
         }
         
     }//GEN-LAST:event_botonAgregarActionPerformed
