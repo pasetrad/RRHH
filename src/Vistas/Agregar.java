@@ -5,16 +5,18 @@
  */
 package Vistas;
 
+import Controlador.Control;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author simon
  */
 public class Agregar extends javax.swing.JFrame {
-
+    private Control consulta;
     /**
      * Creates new form Agregar
      */
@@ -324,9 +326,43 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
+        int rut,numero;
+        String dv,nombre,apellido,direccion,fechaIng, fechaNac;
+        consulta = new Control();
+        nombre= varNombre.getText();
+        apellido =varApellido.getText();
+        direccion = varCalle.getText()+" #"+varNumero.getText()+" -"+varComuna.getText();
+        if(validarRut(varRut.getText()+varDv.getText())){
+            rut= Integer.parseInt(varRut.getText());
+            dv= varDv.getText();
+            fechaIng=boxAño.getSelectedItem().toString()+"-"+boxMes.getSelectedItem().toString()+"-"+boxDia.getSelectedItem().toString();
+        fechaNac=boxAño1.getSelectedItem().toString()+"-"+boxMes1.getSelectedItem().toString()+"-"+boxDia1.getSelectedItem().toString();
+        consulta.agregar(rut, dv, fechaIng, direccion, fechaNac, nombre, apellido);
+        }else {
+            JOptionPane.showMessageDialog(this, "Rut no valido");
+        }
+        
     }//GEN-LAST:event_botonAgregarActionPerformed
-
+    public static boolean validarRut(String rut) {
+        boolean validacion = false;
+        try {
+            rut =  rut.toUpperCase();
+            rut = rut.replace(".", "");
+            rut = rut.replace("-", "");
+            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+            char dv = rut.charAt(rut.length() - 1);
+            int m = 0, s = 1;
+            for (; rutAux != 0; rutAux /= 10) {
+                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+            }    
+            if (dv == (char) (s != 0 ? s + 47 : 75)) {
+                validacion = true;
+            }
+        } catch (java.lang.NumberFormatException e) {
+        } catch (Exception e) {
+        }
+        return validacion;
+    }
     /**
      * @param args the command line arguments
      */
