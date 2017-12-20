@@ -120,7 +120,7 @@ public class Listar extends javax.swing.JFrame {
         Object[] fila = new Object[6];
         for (int x=0;x<lista.size();x++){
             fila[0]=lista.get(x).getId();
-            fila[1]=lista.get(x).getRut()+"-"+lista.get(x).getDv();
+            fila[1]=String.format("%,d",lista.get(x).getRut())+"-"+lista.get(x).getDv();
             fila[2]=lista.get(x).getNombre();
             fila[3]=lista.get(x).getApellido();
             fila[4]=lista.get(x).getFechaIngreso();

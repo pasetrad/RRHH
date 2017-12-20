@@ -23,7 +23,7 @@ public class ModeloAgregar {
         
         try {
             String sql = "insert into personal (id_personal,rut,dv,fechaIngreso,direccion,fechaCumple,nombre,apellido)\n" +
-"values (cod_personal.nextval,?,?,to_timestamp(?,'YYYY-MM-DD HH24:MI:SS'),?,to_timestamp(?,'YYYY-MM-DD HH24:MI:SS'),?,?)";
+"values (id_personal.nextval,?,?,to_timestamp(?,'YYYY-MM-DD HH24:MI:SS'),?,to_timestamp(?,'YYYY-MM-DD HH24:MI:SS'),?,?)";
             PreparedStatement preparedStatement = acceso.obtenerInstancia().prepareStatement(sql);
             preparedStatement.setInt(1,rut);
             preparedStatement.setString(2,dv);
@@ -35,7 +35,7 @@ public class ModeloAgregar {
             preparedStatement.setString(6,nombre);
             preparedStatement.setString(7,apellido);
             preparedStatement.execute();
-            String sq2 = "select seq_id_trans.currval as valor from dual";
+            String sq2 = "select id_personal.currval as valor from dual";
             preparedStatement = acceso.obtenerInstancia().prepareStatement(sq2);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){

@@ -326,19 +326,25 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        int rut,numero;
+        int rut,numero,valor;
         String dv,nombre,apellido,direccion,fechaIng, fechaNac;
         consulta = new Control();
         nombre= varNombre.getText();
         apellido =varApellido.getText();
         direccion = varCalle.getText()+" #"+varNumero.getText()+" -"+varComuna.getText();
         if(validarRut(varRut.getText()+varDv.getText())){
-            rut= Integer.parseInt(varRut.getText());
+            rut=Integer.parseInt(varRut.getText());
             dv= varDv.getText();
             fechaIng=boxAño.getSelectedItem().toString()+"-"+boxMes.getSelectedItem().toString()+"-"+boxDia.getSelectedItem().toString();
         fechaNac=boxAño1.getSelectedItem().toString()+"-"+boxMes1.getSelectedItem().toString()+"-"+boxDia1.getSelectedItem().toString();
-        consulta.agregar(rut, dv, fechaIng, direccion, fechaNac, nombre, apellido);
+        valor=consulta.agregar(rut, dv, fechaIng, direccion, fechaNac, nombre, apellido);
+        if(valor>0){
+        JOptionPane.showMessageDialog(this, "Personal con ID "+valor+" agregado con exito");
         }else {
+            JOptionPane.showMessageDialog(this, "No se pudo ingresar");
+        }
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Rut no valido");
         }
         
