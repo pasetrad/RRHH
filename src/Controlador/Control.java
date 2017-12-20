@@ -5,7 +5,9 @@
  */
 package Controlador;
 
+import Negocio.ModeloAgregar;
 import Negocio.ModeloBuscar;
+import Negocio.ModeloListar;
 import Negocio.Personal;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -35,5 +37,15 @@ private Personal persona;
         boolean flag  = false;
         return flag;
     }
+    private ModeloAgregar agrega;
+    private ModeloListar lista;
     
+    public int agregar(int rut, String dv, String fechaIngreso,String direccion, String fechaCumple,String nombre,String apellido){
+        agrega = new ModeloAgregar();
+        return agrega.Ingresar(rut, dv, fechaIngreso, direccion, fechaCumple, nombre, apellido);
+    }
+    public ArrayList<Personal> listar(){
+        lista = new ModeloListar();
+        return lista.Listar();
+    }
 }

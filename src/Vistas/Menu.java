@@ -5,17 +5,74 @@
  */
 package Vistas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author simon
  */
 public class Menu extends javax.swing.JFrame {
-
+    JMenuBar barraMenu;
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+        setJMenuBar(initMenu());
+    }
+    public JMenuBar initMenu(){
+         barraMenu = new JMenuBar();
+        JMenu jMenuOpera = new JMenu("Gestion");
+        JMenu jMenuProgra = new JMenu("Progama");
+        JMenuItem jItem1 = new JMenuItem("Agregar Personal");
+        JMenuItem jItem2 = new JMenuItem("Listar Personal");
+        JMenuItem jItem3 = new JMenuItem("Modificar Personal");
+        JMenuItem jItem4 = new JMenuItem("Eliminar Personal");
+        JMenuItem jItem5 = new JMenuItem("Cerrar");
+        
+        jItem1.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ev) {
+                JFrame frameAgregar = new Agregar();
+                frameAgregar.setVisible(true);
+                dispose();
+        }});
+        jItem2.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ev) {
+                JFrame frameListar = new Listar();
+                frameListar.setVisible(true);
+                dispose();
+        }});
+        jItem3.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ev) {
+                JFrame frameListar = new Modificar();
+                frameListar.setVisible(true);
+                dispose();
+        }});
+        jItem4.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ev) {
+                JFrame frameListar = new Eliminar();
+                frameListar.setVisible(true);
+                
+        }});
+        jItem5.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ev) {
+                dispose();
+        }});
+        
+        jMenuOpera.add(jItem1);
+        jMenuOpera.add(jItem2);
+        jMenuOpera.add(jItem3);
+        jMenuOpera.add(jItem4);
+        jMenuProgra.add(jItem5);
+        barraMenu.add(jMenuOpera);
+        barraMenu.add(jMenuProgra);
+        barraMenu.setVisible(true);
+        return barraMenu;
     }
 
     /**
@@ -68,6 +125,21 @@ public class Menu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
